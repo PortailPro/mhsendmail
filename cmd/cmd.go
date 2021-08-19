@@ -43,10 +43,59 @@ func Go() {
 	// override defaults from cli flags
 	flag.StringVar(&smtpAddr, "smtp-addr", smtpAddr, "SMTP server address")
 	flag.StringVarP(&fromAddr, "from", "f", fromAddr, "SMTP sender")
-	flag.BoolP("long-i", "i", true, "Ignored. This flag exists for sendmail compatibility.")
-	flag.BoolP("long-o", "o", true, "Ignored. This flag exists for sendmail compatibility.")
-	flag.BoolP("long-t", "t", true, "Ignored. This flag exists for sendmail compatibility.")
 	flag.BoolVarP(&verbose, "verbose", "v", false, "Verbose mode (sends debug output to stderr)")
+
+	sendmailCompatibilityFlags := [42]string{"Am",
+		"Ac",
+		"B",
+		"bd",
+		"bh",
+		"bH",
+		"bi",
+		"bl",
+		"bm",
+		"bp",
+		"bs",
+		"bv",
+		"C",
+		"c",
+		"F",
+		"G",
+		"h",
+		"I",
+		"i",
+		"L",
+		"m",
+		"N",
+		"n",
+		"oA",
+		"O",
+		"o7",
+		"o8",
+		"oi",
+		"om",
+		"o",
+		"r",
+		"R",
+		"q",
+		"qI",
+		"qR",
+		"qS",
+		"t",
+		"U",
+		"V",
+		"XV",
+		"X",
+	}
+
+	for _, element := range sendmailCompatibilityFlags {
+		if len(element) > 1 {
+			flag.Int(element, 666, "Ignored. This flag exists for sendmail compatibility.")
+		} else {
+			flag.BoolP("long-" + element, element, true, "Ignored. This flag exists for sendmail compatibility.")
+		}
+	}
+
 	flag.Parse()
 
 	// allow recipient to be passed as an argument
