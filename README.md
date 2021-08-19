@@ -4,7 +4,7 @@ mhsendmail
 A sendmail replacement which forwards mail to an SMTP server.
 
 ```bash
-> go get github.com/mailhog/mhsendmail
+> go get github.com/PortailPro/mhsendmail
 
 > mhsendmail test@mailhog.local <<EOF
 From: App <app@mailhog.local>
@@ -42,5 +42,6 @@ sendmail_path = /usr/local/bin/mhsendmail
 ### Licence
 
 Copyright ©‎ 2015 - 2016, Ian Kent (http://iankent.uk)
+Copyright ©‎ 2021, Portailpro (https://www.portailpro.net)
 
 Released under MIT license, see [LICENSE](LICENSE.md) for details.
